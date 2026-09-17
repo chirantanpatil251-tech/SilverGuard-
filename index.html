@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-font-size="normal">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SilverGuard | Senior Cyber Defense & Multilingual Threat Shield</title>
+  <meta name="description"
+    content="Accessible real-time scam detection, autonomous background threat guard, multilingual voice alerts in native languages, Cyber Police Station 1930 locator, and digital evidence recording for senior citizens.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Noto+Sans+Gurmukhi:wght@400;600;700&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Accessibility & Sentinel Top Bar -->
+  <header class="top-bar" role="banner">
+    <div class="container top-bar-content">
+      <div class="brand-group">
+        <div class="logo-shield" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">SilverGuard <span class="brand-version-badge">SHIELD AI</span></h1>
+          <p class="brand-tagline" data-i18n="brand_tagline">Elder Cyber Protection, Local Voice Alerts & Police
+            Evidence Locker</p>
+        </div>
+      </div>
+
+      <!-- Sentinel & Language & Accessibility Controls -->
+      <div class="accessibility-controls" aria-label="Accessibility & Safety Controls">
+        <!-- Regional Language Switcher -->
+        <div class="language-picker-group">
+          <label for="language-select" class="ctrl-label" id="lang-label">
+            <span class="icon" aria-hidden="true">🌐</span>
+            <span data-i18n="lang_label_text">Language / भाषा:</span>
+          </label>
+          <select id="language-select" class="language-select" aria-labelledby="lang-label">
+            <option value="en" selected>English (Default)</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+          </select>
+        </div>
+
+        <!-- Auto-Guard Background Sentinel Toggle -->
+        <button type="button" class="btn-sentinel active" id="sentinel-toggle-btn"
+          title="Toggle autonomous background fraud monitoring">
+          <span class="sentinel-radar" aria-hidden="true"></span>
+          <span class="sentinel-status-dot"></span>
+          <span class="sentinel-text"><span data-i18n="sentinel_btn_label">Auto-Guard:</span> <strong
+              id="sentinel-state-text" data-i18n="sentinel_active_text">ACTIVE</strong></span>
+        </button>
+
+        <!-- Font Scale -->
+        <div class="font-scale-group" role="group" aria-label="Text Size Controls">
+          <span class="ctrl-label" id="text-size-label" data-i18n="text_size_label">Text:</span>
+          <button type="button" class="btn-ctrl active" data-size="normal" aria-labelledby="text-size-label"
+            title="Standard text size">A</button>
+          <button type="button" class="btn-ctrl" data-size="large" aria-labelledby="text-size-label"
+            title="Large text size">A+</button>
+          <button type="button" class="btn-ctrl" data-size="xlarge" aria-labelledby="text-size-label"
+            title="Extra large text size">A++</button>
+        </div>
+
+        <!-- High Contrast -->
+        <button type="button" class="btn-ctrl-action" id="theme-toggle"
+          title="Switch between normal and high-contrast mode">
+          <span class="icon" aria-hidden="true">🌓</span>
+          <span class="btn-label" data-i18n="contrast_btn">Contrast</span>
+        </button>
+
+        <!-- Voice Help -->
+        <button type="button" class="btn-ctrl-action" id="voice-toggle"
+          title="Read page explanations aloud in your selected language">
+          <span class="icon" aria-hidden="true">🔊</span>
+          <span class="btn-label" id="voice-btn-label" data-i18n="voice_btn">Voice Help</span>
+        </button>
+
+        <!-- Emergency SOS -->
+        <button type="button" class="btn-emergency" id="sos-trigger" title="Open emergency safe action screen">
+          <span class="pulse-ring" aria-hidden="true"></span>
+          <span class="icon" aria-hidden="true">🛑</span>
+          <span data-i18n="emergency_btn">Emergency Pause & 1930</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Auto-Guard Sentinel Status Banner (Autonomous monitoring bar) -->
+  <aside class="sentinel-banner" id="sentinel-banner" aria-label="Background Auto-Protection Active">
+    <div class="container sentinel-banner-inner">
+      <div class="sentinel-banner-left">
+        <span class="radar-pulse-icon" aria-hidden="true">🛡️</span>
+        <div>
+          <strong id="sentinel-banner-title" data-i18n="sentinel_banner_title">Autonomous Elder Shield is Guarding This
+            Device</strong>
+          <p id="sentinel-banner-desc" data-i18n="sentinel_banner_desc">Auto-interception active: Voice warnings will
+            trigger instantly in your selected local language if fraud is detected.</p>
+        </div>
+      </div>
+      <div class="sentinel-banner-actions">
+        <button type="button" class="btn btn-sm btn-ghost-light" id="btn-simulate-auto-threat"
+          data-i18n="sentinel_test_btn">
+          ⚡ Test Auto-Alert Trigger
+        </button>
+        <span class="badge badge-pulse" data-i18n="watch_247">24/7 Watch</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="container nav-tabs-container">
+      <ul class="nav-tabs" role="tablist">
+        <li role="presentation">
+          <button class="nav-tab active" role="tab" aria-selected="true" aria-controls="panel-message" id="tab-message">
+            <span class="tab-icon" aria-hidden="true">💬</span>
+            <span class="tab-text" data-i18n="nav_message">Message Scanner</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab" role="tab" aria-selected="false" aria-controls="panel-link" id="tab-link">
+            <span class="tab-icon" aria-hidden="true">🔗</span>
+            <span class="tab-text" data-i18n="nav_link">Link Checker</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab" role="tab" aria-selected="false" aria-controls="panel-call" id="tab-call">
+            <span class="tab-icon" aria-hidden="true">📞</span>
+            <span class="tab-text" data-i18n="nav_call">Call Screener & Recorder</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab nav-tab-highlight" role="tab" aria-selected="false" aria-controls="panel-police"
+            id="tab-police">
+            <span class="tab-icon" aria-hidden="true">🚨</span>
+            <span class="tab-text" data-i18n="nav_police">Nearest Cyber Police & 1930</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab nav-tab-highlight" role="tab" aria-selected="false" aria-controls="panel-evidence"
+            id="tab-evidence">
+            <span class="tab-icon" aria-hidden="true">📁</span>
+            <span class="tab-text" data-i18n="nav_evidence">Evidence Locker & FIR Dossier</span>
+            <span class="evidence-count-badge" id="evidence-count-badge">0</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab" role="tab" aria-selected="false" aria-controls="panel-practice" id="tab-practice">
+            <span class="tab-icon" aria-hidden="true">🎯</span>
+            <span class="tab-text" data-i18n="nav_quiz">Spot The Scam Quiz</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab" role="tab" aria-selected="false" aria-controls="panel-caregiver" id="tab-caregiver">
+            <span class="tab-icon" aria-hidden="true">👨‍👩‍👧</span>
+            <span class="tab-text" data-i18n="nav_caregiver">Family & Caregiver Bridge</span>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="nav-tab" role="tab" aria-selected="false" aria-controls="panel-blueprint" id="tab-blueprint">
+            <span class="tab-icon" aria-hidden="true">📘</span>
+            <span class="tab-text" data-i18n="nav_blueprint">Project Blueprint</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="container main-content" id="main-content">
+
+    <!-- 1. MESSAGE SCANNER TAB -->
+    <section id="panel-message" class="tab-panel active" role="tabpanel" aria-labelledby="tab-message">
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="simple_safe_badge">Simple & Safe</div>
+        <h2 data-i18n="msg_title">Scan Any Suspicious Text, SMS, or WhatsApp Message</h2>
+        <p data-i18n="msg_desc">Did you receive an alarming message claiming your bank is locked, electricity will be
+          cut, or your grandchild needs urgent bail? Paste it below to inspect for fraud.</p>
+      </div>
+
+      <div class="scanner-grid">
+        <!-- Input Column -->
+        <div class="card scanner-card">
+          <div class="card-header">
+            <h3 data-i18n="msg_card1_header">1. Paste or Choose a Message</h3>
+            <span class="badge badge-info" data-i18n="private_badge">100% Private & Local</span>
+          </div>
+
+          <div class="presets-section">
+            <label class="section-subheading" data-i18n="presets_label">Or test with common real-world scams:</label>
+            <div class="preset-buttons" role="group" aria-label="Sample message presets">
+              <button type="button" class="preset-btn danger-preset" data-preset="electricity_bill"
+                data-i18n="preset_elec">
+                ⚡ Electricity Power Cut Warning
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-preset="bank_kyc" data-i18n="preset_bank">
+                💳 Bank Account / KYC Blocked Fraud
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-preset="lottery_kbc"
+                data-i18n="preset_lottery">
+                🎁 25 Lakh Lottery / KBC Winner
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-preset="grandkid" data-i18n="preset_grandkid">
+                🚨 Grandchild In Jail / Accident Bail
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-preset="irs" data-i18n="preset_police">
+                ⚖️ Police / Tax Warrant Threat
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-preset="delivery" data-i18n="preset_delivery">
+                📦 Fake Parcel Delivery Unpaid Fee
+              </button>
+              <button type="button" class="preset-btn safe-preset" data-preset="genuine_family"
+                data-i18n="preset_real_family">
+                💚 Real Family Greeting
+              </button>
+              <button type="button" class="preset-btn safe-preset" data-preset="genuine_clinic"
+                data-i18n="preset_real_clinic">
+                💚 Real Doctor Reminder
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message-input" class="form-label" data-i18n="msg_input_label">Message Text:</label>
+            <textarea id="message-input" class="text-input" rows="5"
+              placeholder="Paste the SMS, WhatsApp forward, or email you received here..."></textarea>
+          </div>
+
+          <div class="action-row">
+            <button type="button" id="btn-scan-message" class="btn btn-primary btn-large">
+              <span class="icon" aria-hidden="true">🔍</span>
+              <span data-i18n="btn_check_msg">Check This Message</span>
+            </button>
+            <button type="button" id="btn-clear-message" class="btn btn-secondary" data-i18n="btn_clear">Clear</button>
+          </div>
+        </div>
+
+        <!-- Result Column -->
+        <div class="card result-card" id="message-result-container">
+          <div class="empty-state" id="message-empty-state">
+            <div class="empty-icon" aria-hidden="true">🛡️</div>
+            <h3 data-i18n="empty_state_title">Ready to Protect You</h3>
+            <p data-i18n="empty_state_desc">Click "Check This Message" or select one of the examples above. SilverGuard
+              will give you an immediate plain-language verdict and vocal warning in your native language.</p>
+          </div>
+
+          <div id="message-result-content" class="result-content hidden">
+            <!-- Dynamic Result Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. LINK & WEBSITE CHECKER TAB -->
+    <section id="panel-link" class="tab-panel" role="tabpanel" aria-labelledby="tab-link" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="link_intro_badge">Safety First</div>
+        <h2 data-i18n="link_title">Inspect Suspicious Website Links Before Clicking</h2>
+        <p data-i18n="link_desc">Scammers create websites that look just like your bank, government portal, or utility
+          board, but with deceptive web addresses. Type or paste the link here to verify its safety.</p>
+      </div>
+
+      <div class="scanner-grid">
+        <div class="card scanner-card">
+          <div class="card-header">
+            <h3 data-i18n="link_card1_header">1. Enter or Test a Web Address (URL)</h3>
+          </div>
+
+          <div class="presets-section">
+            <label class="section-subheading" data-i18n="link_presets_label">Try these sample website links:</label>
+            <div class="preset-buttons">
+              <button type="button" class="preset-btn danger-preset" data-link-preset="fake_sbi">
+                ⚠️ onlinesbi-kyc-verify-update.top
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-link-preset="fake_bank">
+                ⚠️ chase-security-login2026.net
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-link-preset="fake_medicare">
+                ⚠️ medicare-benefit-card-claim.info
+              </button>
+              <button type="button" class="preset-btn danger-preset" data-link-preset="fake_apple">
+                ⚠️ support-appleid-unlock.xyz
+              </button>
+              <button type="button" class="preset-btn safe-preset" data-link-preset="real_chase">
+                💚 chase.com (Official)
+              </button>
+              <button type="button" class="preset-btn safe-preset" data-link-preset="real_gov">
+                💚 cybercrime.gov.in (Official)
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="link-input" class="form-label" data-i18n="link_input_label">Website Link / URL:</label>
+            <input type="text" id="link-input" class="text-input"
+              placeholder="e.g. www.bank-secure-login.top or paste web address">
+          </div>
+
+          <div class="action-row">
+            <button type="button" id="btn-scan-link" class="btn btn-primary btn-large">
+              <span class="icon" aria-hidden="true">🛡️</span>
+              <span data-i18n="btn_check_link">Inspect Web Link</span>
+            </button>
+            <button type="button" id="btn-clear-link" class="btn btn-secondary" data-i18n="btn_clear">Clear</button>
+          </div>
+        </div>
+
+        <div class="card result-card" id="link-result-container">
+          <div class="empty-state" id="link-empty-state">
+            <div class="empty-icon" aria-hidden="true">🌐</div>
+            <h3 data-i18n="link_empty_title">Inspect Any Web Address</h3>
+            <p data-i18n="link_empty_desc">Paste a web address or choose a preset to check if scammers are trying to
+              steal your net-banking passwords or credit cards.</p>
+          </div>
+          <div id="link-result-content" class="result-content hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PHONE CALL SCREENER & RECORDER TAB -->
+    <section id="panel-call" class="tab-panel" role="tabpanel" aria-labelledby="tab-call" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="call_intro_badge">Real-Time Defense & Auto-Recording</div>
+        <h2 data-i18n="call_title">Live Phone Call Threat Screener & Automatic Police Evidence Recorder</h2>
+        <p data-i18n="call_desc">Scammers use high-stress phone calls to panic seniors into sending money. Experience
+          our real-time voice call screener that detects scam phrases live and <strong>automatically records the audio
+            call as digital proof for the cyber police</strong>.</p>
+      </div>
+
+      <div class="call-simulator-grid">
+        <!-- Control Panel -->
+        <div class="card call-control-card">
+          <div class="card-header">
+            <h3 data-i18n="call_scenarios_header">Choose a Call Simulation Scenario</h3>
+            <span class="badge badge-danger" data-i18n="autorecord_badge">Auto-Record ON</span>
+          </div>
+
+          <div class="call-scenarios-list">
+            <button type="button" class="call-scenario-btn active" data-call-scenario="digital_arrest">
+              <span class="call-type-icon">👮‍♂️</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_digital_arrest">"Digital Arrest" / Fake Police Video Threat</strong>
+                <span data-i18n="scenario_digital_arrest_sub">Claims parcel with illegal drugs seized at customs</span>
+              </div>
+            </button>
+
+            <button type="button" class="call-scenario-btn" data-call-scenario="electricity_cut">
+              <span class="call-type-icon">⚡</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_elec_cut">Electricity Power Disconnection Panic Call</strong>
+                <span data-i18n="scenario_elec_cut_sub">Threatens power cut tonight unless bill paid on APK</span>
+              </div>
+            </button>
+
+            <button type="button" class="call-scenario-btn" data-call-scenario="irs_police">
+              <span class="call-type-icon">🚨</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_tax_threat">Tax & Enforcement Arrest Warrant Threat</strong>
+                <span data-i18n="scenario_tax_threat_sub">Demands immediate prepaid gift cards or wire</span>
+              </div>
+            </button>
+
+            <button type="button" class="call-scenario-btn" data-call-scenario="grandkid_bail">
+              <span class="call-type-icon">👵</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_grandkid_bail">Grandchild in Emergency Accident / Bail</strong>
+                <span data-i18n="scenario_grandkid_bail_sub">Crying actor begging: "Don't tell mom!"</span>
+              </div>
+            </button>
+
+            <button type="button" class="call-scenario-btn" data-call-scenario="tech_refund">
+              <span class="call-type-icon">💻</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_tech_remote">AnyDesk / TeamViewer Computer Takeover</strong>
+                <span data-i18n="scenario_tech_remote_sub">Demands remote PC screen share to fix account</span>
+              </div>
+            </button>
+
+            <button type="button" class="call-scenario-btn" data-call-scenario="safe_doctor">
+              <span class="call-type-icon">🩺</span>
+              <div class="call-info">
+                <strong data-i18n="scenario_doctor">Genuine Senior Health Clinic Call</strong>
+                <span data-i18n="scenario_doctor_sub">Confirming annual wellness checkup appointment</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Real Microphone Live Recording Option -->
+          <div class="mic-record-panel">
+            <div class="mic-record-header">
+              <span class="icon">🎙️</span>
+              <strong data-i18n="mic_panel_header">Live Microphone Audio Proof Mode</strong>
+            </div>
+            <p class="mic-desc" data-i18n="mic_panel_desc">Are you currently on a suspicious phone call? Click to record
+              your microphone in real-time as police evidence:</p>
+            <div class="mic-actions">
+              <button type="button" id="btn-toggle-mic-record" class="btn btn-mic-record">
+                <span class="mic-dot"></span>
+                <span id="mic-btn-text" data-i18n="mic_btn_record">Record Live Mic Audio</span>
+              </button>
+              <span id="mic-status-label" class="mic-status-text" data-i18n="mic_status_ready">Mic ready</span>
+            </div>
+          </div>
+
+          <div class="call-actions">
+            <button type="button" id="btn-start-call" class="btn btn-call-start">
+              <span class="icon">📞</span>
+              <span data-i18n="btn_start_call">Start Simulated Call</span>
+            </button>
+            <button type="button" id="btn-stop-call" class="btn btn-call-hangup" disabled>
+              <span class="icon">🛑</span>
+              <span data-i18n="btn_stop_call">Hang Up & Block Call</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Call Screen -->
+        <div class="card call-screen-card" id="call-screen">
+          <div class="call-header-status">
+            <div class="caller-avatar" id="caller-avatar">👮‍♂️</div>
+            <div class="caller-details">
+              <h3 id="caller-name">Incoming Call Simulation</h3>
+              <span id="caller-number" class="caller-sub">Select scenario and press Start</span>
+            </div>
+            <div class="call-timer" id="call-timer">00:00</div>
+          </div>
+
+          <!-- Real-Time Waveform & Recording Indicator -->
+          <div class="recording-badge-bar">
+            <span class="rec-indicator" id="rec-indicator"><span class="rec-dot"></span> <span
+                data-i18n="rec_badge_text">AUTO-RECORDING CALL AS POLICE PROOF</span></span>
+            <span class="audio-file-tag" id="audio-file-tag">audio_proof.wav</span>
+          </div>
+
+          <div class="waveform-container" id="waveform">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+
+          <!-- Live Transcript Box -->
+          <div class="transcript-box">
+            <div class="transcript-header">
+              <span data-i18n="transcript_header">Live Speech Transcription & Scam Watch</span>
+              <span class="live-pill" id="live-indicator">IDLE</span>
+            </div>
+            <div class="transcript-body" id="transcript-body">
+              <p class="transcript-placeholder" data-i18n="transcript_placeholder">Press "Start Simulated Call" to begin
+                the live call analysis...</p>
+            </div>
+          </div>
+
+          <!-- Detected Threats Banner -->
+          <div class="live-threat-alert hidden" id="live-threat-alert">
+            <div class="threat-alert-icon">⚠️</div>
+            <div class="threat-alert-text">
+              <h4 id="threat-alert-title">High Risk Scam Detected!</h4>
+              <p id="threat-alert-desc">The caller is intimidating you and demanding money/codes.</p>
+              <div class="threat-local-voice-pill" id="threat-local-voice-pill">
+                <span>🔊 Voice Alert active in your native language</span>
+              </div>
+            </div>
+            <div class="threat-action-btns">
+              <button type="button" class="btn btn-danger-action" id="btn-emergency-hangup">
+                Hang Up & Save Evidence
+              </button>
+            </div>
+          </div>
+
+          <!-- Call Evidence Preview / Player -->
+          <div class="call-evidence-saved hidden" id="call-evidence-saved">
+            <div class="evidence-saved-header">
+              <span class="icon">✅</span>
+              <strong data-i18n="audio_saved_header">Call Audio Proof Automatically Captured!</strong>
+            </div>
+            <div class="audio-playback-row">
+              <audio id="evidence-audio-player" controls class="audio-player"></audio>
+              <a id="btn-download-audio" class="btn btn-sm btn-primary" download="scam_call_evidence.wav"
+                data-i18n="btn_download_wav">
+                ⬇️ Download Audio (.WAV)
+              </a>
+              <button type="button" id="btn-view-in-locker" class="btn btn-sm btn-secondary"
+                data-i18n="btn_open_locker">
+                📁 Open in Evidence Locker
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. NEAREST CYBER POLICE & 1930 LOCATOR TAB -->
+    <section id="panel-police" class="tab-panel" role="tabpanel" aria-labelledby="tab-police" hidden>
+      <div class="intro-card police-intro-card">
+        <div class="intro-badge badge-police" data-i18n="police_intro_badge">Emergency Cyber Police Portal</div>
+        <h2 data-i18n="police_title">Nearest Cyber Police Station & National 1930 Helpline Locator</h2>
+        <p data-i18n="police_desc">If you or a loved one are being threatened or have lost money, immediate action
+          during the <strong>Golden Hour (first 2-3 hours)</strong> can freeze the stolen funds. Locate your nearest
+          Cyber Crime Police Station or call 1930 directly.</p>
+      </div>
+
+      <!-- National 1930 Emergency Banner -->
+      <div class="card national-1930-card">
+        <div class="n1930-content">
+          <div class="n1930-badge" data-i18n="n1930_badge">NATIONAL CYBER CRIME HELPLINE</div>
+          <div class="n1930-number-row">
+            <span class="n1930-call-icon">📞</span>
+            <span class="n1930-number">1930</span>
+            <span class="n1930-tollfree" data-i18n="n1930_tollfree">(Toll-Free • 24x7 Active across India)</span>
+          </div>
+          <p class="n1930-desc" data-i18n="n1930_desc">Citizen Financial Cyber Fraud Reporting and Management System
+            (MHA & I4C). Connects instantly to bank nodal officers to freeze fraudulent UPI / IMPS transactions.</p>
+        </div>
+        <div class="n1930-actions">
+          <a href="tel:1930" class="btn btn-emergency-call btn-pulse">
+            <span class="icon">📞</span>
+            <span data-i18n="btn_call_1930">Call 1930 Helpline Now</span>
+          </a>
+          <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer"
+            class="btn btn-secondary btn-large">
+            <span data-i18n="btn_open_portal">🌐 Open cybercrime.gov.in Portal</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Golden Hour Action Checklist -->
+      <div class="card golden-hour-card">
+        <div class="card-header">
+          <h3 data-i18n="golden_hour_header">⏱️ The "Golden Hour" Protocol (What to do within 2 hours of fraud)</h3>
+          <span class="badge badge-warning" data-i18n="high_priority_badge">High Priority</span>
+        </div>
+        <div class="golden-steps-grid">
+          <div class="g-step">
+            <div class="g-step-num">1</div>
+            <strong data-i18n="gstep1_title">Dial 1930 Immediately</strong>
+            <p data-i18n="gstep1_desc">Tell the operator the fraud amount, your bank account name, and suspect UPI /
+              phone number.</p>
+          </div>
+          <div class="g-step">
+            <div class="g-step-num">2</div>
+            <strong data-i18n="gstep2_title">Do NOT Delete Messages / Call Logs</strong>
+            <p data-i18n="gstep2_desc">Keep the SMS, WhatsApp chat, and call recording intact as legal evidence.</p>
+          </div>
+          <div class="g-step">
+            <div class="g-step-num">3</div>
+            <strong data-i18n="gstep3_title">Block Compromised ATM Card / Netbanking</strong>
+            <p data-i18n="gstep3_desc">Call your bank's official card hotlisting number or use your banking app to
+              freeze the card.</p>
+          </div>
+          <div class="g-step">
+            <div class="g-step-num">4</div>
+            <strong data-i18n="gstep4_title">Submit Formal Evidence Dossier</strong>
+            <p data-i18n="gstep4_desc">Use SilverGuard's Evidence Locker to generate and print your formal police
+              complaint dossier.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Station Finder Controls -->
+      <div class="card police-finder-card">
+        <div class="card-header">
+          <h3 data-i18n="station_finder_header">Find Cyber Crime Police Stations Near You</h3>
+          <button type="button" id="btn-detect-location" class="btn btn-primary">
+            <span class="icon">📍</span>
+            <span id="loc-btn-text" data-i18n="btn_gps_detect">Auto-Detect My Location (GPS)</span>
+          </button>
+        </div>
+
+        <div class="police-search-row">
+          <div class="search-field">
+            <label for="police-city-search" class="form-label" data-i18n="search_city_label">Filter by City, State, or
+              Pincode:</label>
+            <div class="input-with-icon">
+              <span class="input-icon">🔍</span>
+              <input type="text" id="police-city-search" class="text-input"
+                placeholder="e.g. Mumbai, Delhi, Bengaluru, Pune, Hyderabad, 400051...">
+            </div>
+          </div>
+          <div class="search-field state-filter">
+            <label for="police-state-filter" class="form-label" data-i18n="filter_state_label">Select State /
+              Region:</label>
+            <select id="police-state-filter" class="text-input">
+              <option value="all">All States & Territories (India)</option>
+              <option value="Maharashtra">Maharashtra (Mumbai, Pune, Nagpur...)</option>
+              <option value="Delhi">Delhi NCR (Special Cell, Dwarka...)</option>
+              <option value="Karnataka">Karnataka (Bengaluru, Mysuru...)</option>
+              <option value="Telangana">Telangana (Hyderabad, Cyberabad...)</option>
+              <option value="Tamil Nadu">Tamil Nadu (Chennai, Coimbatore...)</option>
+              <option value="West Bengal">West Bengal (Kolkata, Siliguri...)</option>
+              <option value="Gujarat">Gujarat (Ahmedabad, Surat, Gandhinagar...)</option>
+              <option value="Rajasthan">Rajasthan (Jaipur, Jodhpur...)</option>
+              <option value="Uttar Pradesh">Uttar Pradesh (Lucknow, Noida, Kanpur...)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Station Cards Directory List -->
+        <div class="police-stations-grid" id="police-stations-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. DIGITAL EVIDENCE LOCKER & POLICE DOSSIER TAB -->
+    <section id="panel-evidence" class="tab-panel" role="tabpanel" aria-labelledby="tab-evidence" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="evidence_intro_badge">Digital Evidence Vault</div>
+        <h2 data-i18n="evidence_title">Scam Proof Locker & Police FIR Complaint Dossier Generator</h2>
+        <p data-i18n="evidence_desc">SilverGuard automatically archives recorded calls, fraudulent text messages,
+          suspicious caller IDs, and malicious URLs into a tamper-evident digital proof vault ready to submit to the
+          Cyber Police or upload to <code>cybercrime.gov.in</code>.</p>
+      </div>
+
+      <div class="evidence-dashboard-grid">
+        <!-- Evidence Overview & Action Bar -->
+        <div class="card evidence-summary-card">
+          <div class="evidence-summary-content">
+            <div>
+              <h3 data-i18n="evidence_summary_title">Saved Digital Evidence Items</h3>
+              <p class="section-desc" data-i18n="evidence_summary_desc">Each entry includes digital timestamps, threat
+                classification, raw transcripts, and audio recordings.</p>
+            </div>
+            <div class="evidence-action-buttons">
+              <button type="button" class="btn btn-primary btn-large" id="btn-generate-dossier">
+                <span class="icon">📄</span>
+                <span data-i18n="btn_gen_dossier">Generate Official Police Complaint Dossier</span>
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-export-evidence-json">
+                <span data-i18n="btn_export_json">💾 Export All Proof (JSON)</span>
+              </button>
+              <button type="button" class="btn btn-ghost" id="btn-clear-evidence" data-i18n="btn_clear_evidence">Clear
+                Evidence</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidence Items List -->
+        <div class="evidence-items-list" id="evidence-items-container">
+          <!-- Dynamic Evidence Cards populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SPOT THE SCAM PRACTICE QUIZ TAB -->
+    <section id="panel-practice" class="tab-panel" role="tabpanel" aria-labelledby="tab-practice" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="quiz_intro_badge">Practice Makes Safe</div>
+        <h2 data-i18n="quiz_title">Interactive "Spot the Scam" Practice Arena</h2>
+        <p data-i18n="quiz_desc">Test your safety skills with realistic real-world situations. Learn how to spot hidden
+          red flags in a friendly, no-stress environment.</p>
+      </div>
+
+      <div class="practice-container">
+        <!-- Mode Switcher -->
+        <div class="practice-tabs-bar">
+          <button type="button" class="practice-mode-btn active" id="btn-mode-quiz" data-i18n="quiz_mode_5q">
+            📝 5-Question Interactive Quiz
+          </button>
+          <button type="button" class="practice-mode-btn" id="btn-mode-compare" data-i18n="quiz_mode_compare">
+            🔍 Side-by-Side: Real vs Fake Clues
+          </button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-view" class="quiz-view-card card">
+          <div class="quiz-header">
+            <div class="quiz-progress-text"><span data-i18n="quiz_question_label">Question</span> <span
+                id="quiz-current-num">1</span> <span data-i18n="quiz_of_label">of</span> <span
+                id="quiz-total-num">5</span></div>
+            <div class="quiz-score-badge"><span data-i18n="quiz_score_label">Safety Score:</span> <span
+                id="quiz-score-display">0</span> pts</div>
+          </div>
+
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="quiz-progress-bar" style="width: 20%;"></div>
+          </div>
+
+          <div class="quiz-body">
+            <h3 class="quiz-scenario-title" id="quiz-scenario-title">Scenario Loading...</h3>
+            <div class="quiz-scenario-box" id="quiz-scenario-text">Scenario details</div>
+
+            <div class="quiz-options-group" id="quiz-options-container" role="radiogroup"
+              aria-label="Quiz Answer Options">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="quiz-feedback-box hidden" id="quiz-feedback-box">
+              <!-- Feedback message rendered here -->
+            </div>
+          </div>
+
+          <div class="quiz-footer">
+            <button type="button" id="btn-quiz-next" class="btn btn-primary" disabled data-i18n="btn_quiz_next">Next
+              Question ➔</button>
+            <button type="button" id="btn-quiz-restart" class="btn btn-secondary" data-i18n="btn_quiz_restart">Restart
+              Quiz</button>
+          </div>
+        </div>
+
+        <!-- Side-by-Side Comparisons View -->
+        <div id="compare-view" class="compare-view hidden">
+          <div class="compare-grid">
+            <!-- Card 1 -->
+            <div class="card compare-item-card">
+              <div class="compare-header fake-header">
+                <span class="badge badge-danger">SCAM MESSAGE</span>
+                <h4>Fake Electricity Power Cut SMS</h4>
+              </div>
+              <div class="message-preview scam-bg">
+                "Dear Consumer, your electricity power will be disconnected tonight at 9:30 PM because your previous
+                bill was not updated. Immediately call Electricity Officer at 98234-XXXXX or download Mahavitaran APK."
+              </div>
+              <div class="clue-list">
+                <div class="clue-item"><span class="clue-badge red">✕ Urgency:</span> Gives an immediate night deadline
+                  ("tonight at 9:30 PM").</div>
+                <div class="clue-item"><span class="clue-badge red">✕ Shady Contact:</span> Personal mobile number
+                  instead of official electricity portal.</div>
+                <div class="clue-item"><span class="clue-badge red">✕ Malicious APK:</span> Asks to install unknown APK
+                  app that steals banking OTPs.</div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card compare-item-card">
+              <div class="compare-header safe-header">
+                <span class="badge badge-success">GENUINE MESSAGE</span>
+                <h4>Real Electricity Board SMS</h4>
+              </div>
+              <div class="message-preview safe-bg">
+                "MSEDCL Alert: Bill for Consumer No. 01849203 for Rs. 1,420 is due on 25-Oct. Pay securely via official
+                website https://www.mahadiscom.in or authorized payment centers. Disregard if already paid."
+              </div>
+              <div class="clue-list">
+                <div class="clue-item"><span class="clue-badge green">✓ Safe Verification:</span> Quotes your registered
+                  consumer account number and exact bill amount.</div>
+                <div class="clue-item"><span class="clue-badge green">✓ Official Domain:</span> Links only to genuine
+                  <code>.in</code> government domain.</div>
+                <div class="clue-item"><span class="clue-badge green">✓ No Threat:</span> Normal due date with no sudden
+                  cutoff threats.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CAREGIVER & FAMILY BRIDGE TAB -->
+    <section id="panel-caregiver" class="tab-panel" role="tabpanel" aria-labelledby="tab-caregiver" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="caregiver_intro_badge">Family Protection Network</div>
+        <h2 data-i18n="caregiver_title">Caregiver SOS & Loved-One Notification Bridge</h2>
+        <p data-i18n="caregiver_desc">No senior has to face modern scammers alone. SilverGuard bridges elderly users
+          with their trusted family members or caregivers to verify uncertain requests before any money moves.</p>
+      </div>
+
+      <div class="caregiver-grid">
+        <!-- Emergency Contacts Settings -->
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="contacts_header">Trusted Emergency Contacts</h3>
+            <span class="badge badge-primary">Always Ready</span>
+          </div>
+          <p class="section-desc" data-i18n="contacts_desc">When you click "Emergency Pause" or scan an extreme threat,
+            SilverGuard can instantly notify your designated loved ones.</p>
+
+          <div class="contacts-list" id="contacts-list">
+            <div class="contact-item">
+              <div class="contact-avatar">👩</div>
+              <div class="contact-info">
+                <strong>Pooja (Daughter)</strong>
+                <span>+91 98201-23456 • pooja.family@example.com</span>
+              </div>
+              <span class="badge badge-success">Primary Contact</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar">👨</div>
+              <div class="contact-info">
+                <strong>Rohan (Son / Power of Attorney)</strong>
+                <span>+91 98112-98765 • rohan.family@example.com</span>
+              </div>
+              <span class="badge badge-secondary">Secondary</span>
+            </div>
+          </div>
+
+          <div class="sos-simulation-box">
+            <h4 data-i18n="test_alert_header">Test Caregiver Alert Dispatch</h4>
+            <p data-i18n="test_alert_desc">Simulate sending a real-time high-priority WhatsApp and SMS alert to your
+              caregivers with incident details:</p>
+            <button type="button" id="btn-dispatch-sos" class="btn btn-warning btn-large">
+              <span class="icon">📲</span>
+              <span data-i18n="btn_send_sos_caregiver">Send Simulated SOS Alert to Pooja & Rohan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Recent Activity & Threat Log -->
+        <div class="card">
+          <div class="card-header">
+            <h3 data-i18n="history_header">Recent Threat & Activity Log</h3>
+            <button type="button" class="btn btn-text" id="btn-clear-log" data-i18n="btn_clear_history">Clear
+              History</button>
+          </div>
+          <p class="section-desc" data-i18n="history_desc">Real-time log of scanned messages, links, audio recordings,
+            and police evidence captures.</p>
+
+          <div class="activity-timeline" id="activity-timeline">
+            <!-- Timeline items rendered via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PROJECT BLUEPRINT TAB -->
+    <section id="panel-blueprint" class="tab-panel" role="tabpanel" aria-labelledby="tab-blueprint" hidden>
+      <div class="intro-card">
+        <div class="intro-badge" data-i18n="blueprint_intro_badge">Social Good Architecture</div>
+        <h2 data-i18n="blueprint_title">SilverGuard: Social Impact & Technical Blueprint</h2>
+        <p data-i18n="blueprint_desc">Comprehensive overview of elder cyber vulnerability patterns, regional language
+          voice architecture, digital evidence integrity, and National 1930 Cyber Helpline integration.</p>
+      </div>
+
+      <div class="blueprint-content">
+        <div class="blueprint-card card">
+          <div class="blueprint-section">
+            <div class="blueprint-icon-header">
+              <span class="b-icon">📊</span>
+              <h3 data-i18n="bp_sec1_title">1. Elder Cyber Threat Demographics</h3>
+            </div>
+            <p data-i18n="bp_sec1_desc">Older adults are targeted through high-pressure fear tactics (Digital Arrests,
+              KYC expiry, Electricity cutoff). SilverGuard counters this with zero-jargon guidance, autonomous
+              vigilance, and instant multilingual vocal warnings.</p>
+            <div class="blueprint-pills">
+              <div class="bp-pill"><strong>Multilingual Voice Alerts:</strong> Hindi, Marathi, Telugu, Tamil, Bengali,
+                Kannada, Gujarati, Punjabi, Malayalam.</div>
+              <div class="bp-pill"><strong>Auto-Guard Sentinel:</strong> Autonomous background simulation and fraud
+                interception.</div>
+              <div class="bp-pill"><strong>1930 National Helpline:</strong> Instant one-tap direct dialing and station
+                GPS locator.</div>
+              <div class="bp-pill"><strong>Police Evidence Locker:</strong> Audio recording, transcript capture, and
+                FIR-ready complaint dossier.</div>
+            </div>
+          </div>
+
+          <div class="blueprint-section">
+            <div class="blueprint-icon-header">
+              <span class="b-icon">⚙️</span>
+              <h3 data-i18n="bp_sec2_title">2. Technical Threat Detection & Evidence Architecture</h3>
+            </div>
+            <div class="arch-diagram">
+              <div class="arch-box">
+                <div class="arch-title">Input Channel</div>
+                <div class="arch-desc">Live Audio Call / Mic / SMS / WhatsApp / Web Links</div>
+              </div>
+              <div class="arch-arrow">➔</div>
+              <div class="arch-box highlight">
+                <div class="arch-title">SilverGuard Heuristic Engine</div>
+                <div class="arch-desc">40+ Scam Vectors • Digital Arrest • APK Traps • Typosquatting</div>
+              </div>
+              <div class="arch-arrow">➔</div>
+              <div class="arch-box">
+                <div class="arch-title">Multimodal Protection</div>
+                <div class="arch-desc">Native Voice Warning • 1930 Helpline • FIR Complaint Dossier</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Autonomous Threat Interception Alert Modal -->
+  <div class="modal-overlay hidden" id="sentinel-alert-modal" role="dialog" aria-modal="true"
+    aria-labelledby="sentinel-modal-title">
+    <div class="modal-card sentinel-modal-card">
+      <button type="button" class="modal-close" id="btn-close-sentinel-modal" aria-label="Close alert">&times;</button>
+
+      <div class="sentinel-alert-header">
+        <div class="alert-radar-icon" aria-hidden="true">🚨</div>
+        <div class="sentinel-title-block">
+          <span class="badge badge-danger" data-i18n="modal_threat_badge">AUTONOMOUS THREAT DETECTED</span>
+          <h2 id="sentinel-modal-title" data-i18n="modal_threat_title">FRAUD ATTEMPT INTERCEPTED!</h2>
+          <p class="sentinel-caller-tag" id="sentinel-modal-caller">Caller / Sender: +91 98234-XXXXX (Spoofed)</p>
+        </div>
+      </div>
+
+      <!-- Local Language Speech Alert Box -->
+      <div class="native-alert-box" id="sentinel-native-alert-box">
+        <div class="native-alert-header">
+          <span class="icon">🔊</span>
+          <strong id="native-lang-badge">Local Language Alert:</strong>
+        </div>
+        <p class="native-alert-text" id="sentinel-native-alert-text">
+          "सावधान! यह एक फर्जी कॉल या धोखाधड़ी का संदेश है। कृपया कोई पैसे, ओटीपी या कार्ड विवरण न दें।"
+        </p>
+        <button type="button" class="btn btn-sm btn-secondary" id="btn-repeat-native-voice">
+          🔊 <span data-i18n="btn_replay_voice">Replay Voice Warning in Local Language</span>
+        </button>
+      </div>
+
+      <!-- Threat Details Summary -->
+      <div class="sentinel-threat-summary" id="sentinel-modal-desc">
+        The scammer is demanding immediate payment or confidential banking details under false threats of arrest or
+        service disconnection.
+      </div>
+
+      <!-- Immediate Actions -->
+      <div class="sentinel-modal-actions">
+        <a href="tel:1930" class="btn btn-emergency-call">
+          <span class="icon">📞</span>
+          <span data-i18n="btn_call_1930">Call 1930 Cyber Helpline</span>
+        </a>
+        <button type="button" class="btn btn-primary btn-large" id="btn-lock-threat-evidence">
+          <span class="icon">📁</span>
+          <span data-i18n="btn_save_to_locker">Save Proof to Police Evidence Locker</span>
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-dismiss-sentinel-modal" data-i18n="btn_dismiss_safe">
+          Dismiss & I Am Safe
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Police Complaint FIR Dossier Modal (Printable Document) -->
+  <div class="modal-overlay hidden" id="dossier-modal" role="dialog" aria-modal="true"
+    aria-labelledby="dossier-modal-title">
+    <div class="modal-card dossier-modal-card">
+      <div class="dossier-modal-header no-print">
+        <h2 id="dossier-modal-title" data-i18n="dossier_modal_title">Official Cybercrime Complaint Dossier</h2>
+        <div class="dossier-header-actions">
+          <button type="button" class="btn btn-primary" id="btn-print-dossier">
+            <span data-i18n="btn_print_pdf">🖨️ Print / Save as PDF</span>
+          </button>
+          <button type="button" class="btn btn-secondary" id="btn-copy-dossier">
+            <span data-i18n="btn_copy_portal">📋 Copy for cybercrime.gov.in</span>
+          </button>
+          <button type="button" class="modal-close" id="btn-close-dossier" aria-label="Close dossier">&times;</button>
+        </div>
+      </div>
+
+      <!-- Formal Document Content Container -->
+      <div class="dossier-paper" id="dossier-paper">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Emergency Safe Action Modal (SOS) -->
+  <div class="modal-overlay hidden" id="emergency-modal" role="dialog" aria-modal="true"
+    aria-labelledby="sos-modal-title">
+    <div class="modal-card emergency-modal-card">
+      <button type="button" class="modal-close" id="btn-close-sos" aria-label="Close emergency screen">&times;</button>
+
+      <div class="emergency-header">
+        <div class="emergency-stop-icon" aria-hidden="true">🛑</div>
+        <h2 id="sos-modal-title" data-i18n="sos_modal_title">STOP & TAKE A BREATH</h2>
+        <p class="emergency-subtitle" data-i18n="sos_modal_subtitle">You are safe. Nothing bad will happen right this
+          second.</p>
+      </div>
+
+      <div class="emergency-guide-steps">
+        <div class="guide-step">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <strong data-i18n="sos_step1_title">Do NOT send money, gift cards, or crypto</strong>
+            <p data-i18n="sos_step1_desc">No government agency, police officer, or bank will ever ask you to transfer
+              funds or share OTPs.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <strong data-i18n="sos_step2_title">Hang up the phone or close the message</strong>
+            <p data-i18n="sos_step2_desc">Scammers create fake urgency to make you panic. You have the full right to
+              disconnect immediately.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <strong data-i18n="sos_step3_title">Call 1930 Cyber Helpline or Loved Ones</strong>
+            <p data-i18n="sos_step3_desc">Dial 1930 or speak with your daughter Pooja before taking any financial
+              action.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="emergency-actions">
+        <a href="tel:1930" class="btn btn-emergency-call">
+          <span class="icon">📞</span>
+          <span data-i18n="btn_call_1930">Call 1930 National Cyber Helpline</span>
+        </a>
+        <button type="button" class="btn btn-secondary btn-large" id="btn-call-pooja">
+          <span class="icon">👩</span>
+          <span data-i18n="btn_call_daughter">Call Pooja (Daughter): +91 98201-23456</span>
+        </button>
+        <button type="button" class="btn btn-ghost btn-large" id="btn-dismiss-sos" data-i18n="btn_safe_return">
+          I Feel Safe Now — Return to App
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Mobile Emergency Bar -->
+  <div class="mobile-emergency-bar" aria-label="Quick Emergency Helpline Access">
+    <a href="tel:1930" class="mobile-bar-btn btn-call-1930">
+      <span>📞</span> <span data-i18n="mobile_dial_1930">Dial 1930 Cyber Helpline</span>
+    </a>
+    <button type="button" class="mobile-bar-btn btn-sos-mobile" id="btn-mobile-sos">
+      <span>🛑</span> <span data-i18n="mobile_sos_btn">SOS Pause</span>
+    </button>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <p><strong data-i18n="footer_title">SilverGuard</strong> — <span data-i18n="footer_desc">Dedicated to elder
+            digital dignity, multilingual cyber safety, and quick police assistance.</span></p>
+        <p class="footer-privacy" data-i18n="footer_privacy">🔒 100% Client-Side Privacy: Your messages, audio
+          recordings, and checks never leave your device.</p>
+      </div>
+      <div class="footer-right">
+        <a href="tel:1930" class="footer-badge-1930" data-i18n="footer_1930">📞 National Helpline: 1930</a>
+        <span class="badge badge-success" data-i18n="footer_guard_active">Auto-Guard Active</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
