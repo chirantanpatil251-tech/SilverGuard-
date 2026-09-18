@@ -27,15 +27,27 @@
             <path d="m9 12 2 2 4-4" />
           </svg>
         </div>
-        <div>
+        <div class="brand-text-wrap">
           <h1 class="brand-title">SilverGuard <span class="brand-version-badge">SHIELD AI</span></h1>
-          <p class="brand-tagline" data-i18n="brand_tagline">Elder Cyber Protection, Local Voice Alerts & Police
-            Evidence Locker</p>
+          <p class="brand-tagline" data-i18n="brand_tagline">Elder Cyber Protection, Local Voice Alerts & Police Evidence Locker</p>
         </div>
       </div>
 
-      <!-- Sentinel & Language & Accessibility Controls -->
-      <div class="accessibility-controls" aria-label="Accessibility & Safety Controls">
+      <!-- Mobile Quick Actions Bar (Visible on mobile screens) -->
+      <div class="mobile-header-actions">
+        <button type="button" class="btn-mobile-header-sos" id="mobile-header-sos" title="Emergency Stop & 1930">
+          <span class="pulse-ring" aria-hidden="true"></span>
+          <span class="icon">🛑</span>
+          <span class="sos-text">SOS</span>
+        </button>
+        <button type="button" class="btn-mobile-tools" id="btn-mobile-tools-toggle" aria-expanded="false" aria-controls="mobile-tools-drawer" title="Toggle Accessibility & Voice Settings">
+          <span class="icon">⚙️</span>
+          <span class="tools-text">Tools</span>
+        </button>
+      </div>
+
+      <!-- Desktop Sentinel & Language & Accessibility Controls -->
+      <div class="accessibility-controls desktop-accessibility-controls" aria-label="Accessibility & Safety Controls">
         <!-- Regional Language Switcher -->
         <div class="language-picker-group">
           <label for="language-select" class="ctrl-label" id="lang-label">
@@ -96,6 +108,64 @@
           <span class="icon" aria-hidden="true">🛑</span>
           <span data-i18n="emergency_btn">Emergency Pause & 1930</span>
         </button>
+      </div>
+    </div>
+
+    <!-- Mobile Collapsible Tools Drawer -->
+    <div class="mobile-tools-drawer hidden" id="mobile-tools-drawer" aria-label="Mobile Accessibility Drawer">
+      <div class="container mobile-tools-content">
+        <div class="mobile-drawer-header">
+          <div class="drawer-title-group">
+            <span class="icon">⚙️</span>
+            <strong>Quick Accessibility & Voice Controls</strong>
+          </div>
+          <button type="button" class="btn-drawer-close" id="btn-close-drawer" aria-label="Close settings">&times;</button>
+        </div>
+        
+        <div class="mobile-tools-body">
+          <div class="mobile-tool-row">
+            <label for="mobile-language-select" class="mobile-tool-label">
+              <span class="icon">🌐</span>
+              <span data-i18n="lang_label_text">Language / भाषा:</span>
+            </label>
+            <select id="mobile-language-select" class="language-select mobile-select">
+              <option value="en">English (Default)</option>
+              <option value="hi">हिंदी (Hindi)</option>
+              <option value="mr">मराठी (Marathi)</option>
+              <option value="te">తెలుగు (Telugu)</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+              <option value="kn">ಕನ್ನಡ (Kannada)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+              <option value="gu">ગુજરાતી (Gujarati)</option>
+              <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+              <option value="ml">മലയാളം (Malayalam)</option>
+            </select>
+          </div>
+
+          <div class="mobile-tool-row">
+            <span class="mobile-tool-label"><span class="icon">🔍</span> <span data-i18n="text_size_label">Text Size:</span></span>
+            <div class="font-scale-group mobile-font-scale" role="group" aria-label="Mobile text scale">
+              <button type="button" class="btn-ctrl active" data-size="normal">A (Normal)</button>
+              <button type="button" class="btn-ctrl" data-size="large">A+ (Large)</button>
+              <button type="button" class="btn-ctrl" data-size="xlarge">A++ (Giant)</button>
+            </div>
+          </div>
+
+          <div class="mobile-tool-actions">
+            <button type="button" class="btn-ctrl-action" id="mobile-theme-toggle">
+              <span class="icon" aria-hidden="true">🌓</span>
+              <span data-i18n="contrast_btn">High Contrast</span>
+            </button>
+            <button type="button" class="btn-ctrl-action" id="mobile-voice-toggle">
+              <span class="icon" aria-hidden="true">🔊</span>
+              <span id="mobile-voice-btn-label" data-i18n="voice_btn">Voice Help</span>
+            </button>
+            <button type="button" class="btn-sentinel active" id="mobile-sentinel-toggle-btn">
+              <span class="sentinel-status-dot"></span>
+              <span><span data-i18n="sentinel_btn_label">Auto-Guard:</span> <strong id="mobile-sentinel-state-text" data-i18n="sentinel_active_text">ACTIVE</strong></span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -246,7 +316,11 @@
               <span class="icon" aria-hidden="true">🔍</span>
               <span data-i18n="btn_check_msg">Check This Message</span>
             </button>
-            <button type="button" id="btn-clear-message" class="btn btn-secondary" data-i18n="btn_clear">Clear</button>
+            <button type="button" id="btn-paste-message" class="btn btn-secondary" title="Paste from clipboard">
+              <span class="icon" aria-hidden="true">📋</span>
+              <span>Paste Message</span>
+            </button>
+            <button type="button" id="btn-clear-message" class="btn btn-ghost" data-i18n="btn_clear">Clear</button>
           </div>
         </div>
 
@@ -316,7 +390,11 @@
               <span class="icon" aria-hidden="true">🛡️</span>
               <span data-i18n="btn_check_link">Inspect Web Link</span>
             </button>
-            <button type="button" id="btn-clear-link" class="btn btn-secondary" data-i18n="btn_clear">Clear</button>
+            <button type="button" id="btn-paste-link" class="btn btn-secondary" title="Paste web address from clipboard">
+              <span class="icon" aria-hidden="true">📋</span>
+              <span>Paste Link</span>
+            </button>
+            <button type="button" id="btn-clear-link" class="btn btn-ghost" data-i18n="btn_clear">Clear</button>
           </div>
         </div>
 
@@ -586,6 +664,20 @@
             <span class="icon">📍</span>
             <span id="loc-btn-text" data-i18n="btn_gps_detect">Auto-Detect My Location (GPS)</span>
           </button>
+        </div>
+
+        <!-- Quick City Filter Pills for Instant Mobile Access -->
+        <div class="quick-city-chips" role="group" aria-label="Quick city filters">
+          <span class="quick-city-title">Quick Cities:</span>
+          <button type="button" class="city-chip active" data-city-chip="all">All India</button>
+          <button type="button" class="city-chip" data-city-chip="Mumbai">Mumbai</button>
+          <button type="button" class="city-chip" data-city-chip="Delhi">Delhi NCR</button>
+          <button type="button" class="city-chip" data-city-chip="Bengaluru">Bengaluru</button>
+          <button type="button" class="city-chip" data-city-chip="Pune">Pune</button>
+          <button type="button" class="city-chip" data-city-chip="Hyderabad">Hyderabad</button>
+          <button type="button" class="city-chip" data-city-chip="Kolkata">Kolkata</button>
+          <button type="button" class="city-chip" data-city-chip="Chennai">Chennai</button>
+          <button type="button" class="city-chip" data-city-chip="Ahmedabad">Ahmedabad</button>
         </div>
 
         <div class="police-search-row">
@@ -1028,12 +1120,42 @@
   <!-- Sticky Mobile Emergency Bar -->
   <div class="mobile-emergency-bar" aria-label="Quick Emergency Helpline Access">
     <a href="tel:1930" class="mobile-bar-btn btn-call-1930">
-      <span>📞</span> <span data-i18n="mobile_dial_1930">Dial 1930 Cyber Helpline</span>
+      <span class="icon">📞</span> <span data-i18n="mobile_dial_1930">Dial 1930 Cyber Helpline</span>
     </a>
     <button type="button" class="mobile-bar-btn btn-sos-mobile" id="btn-mobile-sos">
-      <span>🛑</span> <span data-i18n="mobile_sos_btn">SOS Pause</span>
+      <span class="pulse-ring" aria-hidden="true"></span>
+      <span class="icon">🛑</span> <span data-i18n="mobile_sos_btn">SOS Pause</span>
     </button>
   </div>
+
+  <!-- Mobile Bottom Navigation Bar (Fixed at bottom for thumb-friendly reach) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobile Main Navigation">
+    <button type="button" class="mobile-nav-btn active" data-target-tab="tab-message" id="mob-tab-msg">
+      <span class="mob-nav-icon">💬</span>
+      <span class="mob-nav-label" data-i18n="nav_message">Scanner</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target-tab="tab-call" id="mob-tab-call">
+      <span class="mob-nav-icon">📞</span>
+      <span class="mob-nav-label" data-i18n="nav_call">Call Screen</span>
+    </button>
+    <button type="button" class="mobile-nav-btn btn-mob-police" data-target-tab="tab-police" id="mob-tab-police">
+      <span class="mob-nav-icon">🚨</span>
+      <span class="mob-nav-label">1930 / Police</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target-tab="tab-evidence" id="mob-tab-evidence">
+      <span class="mob-nav-icon">📁</span>
+      <span class="mob-nav-label" data-i18n="nav_evidence">Evidence</span>
+      <span class="evidence-count-badge mob-evidence-badge" id="mob-evidence-count-badge">0</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target-tab="tab-practice" id="mob-tab-quiz">
+      <span class="mob-nav-icon">🎯</span>
+      <span class="mob-nav-label" data-i18n="nav_quiz">Quiz</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target-tab="tab-caregiver" id="mob-tab-caregiver">
+      <span class="mob-nav-icon">👨‍👩‍👧</span>
+      <span class="mob-nav-label" data-i18n="nav_caregiver">Family</span>
+    </button>
+  </nav>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

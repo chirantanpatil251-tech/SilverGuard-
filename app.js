@@ -1244,12 +1244,21 @@ let currentLanguageKey = localStorage.getItem('sg_language') || 'en';
 
 function initMultilingualEngine() {
   const langSelect = document.getElementById('language-select');
+  const mobLangSelect = document.getElementById('mobile-language-select');
+
+  function handleLanguageChange(newLang) {
+    if (langSelect) langSelect.value = newLang;
+    if (mobLangSelect) mobLangSelect.value = newLang;
+    applyLanguage(newLang, true);
+  }
+
   if (langSelect) {
     langSelect.value = currentLanguageKey;
-    langSelect.addEventListener('change', () => {
-      const selectedLang = langSelect.value;
-      applyLanguage(selectedLang, true);
-    });
+    langSelect.addEventListener('change', () => handleLanguageChange(langSelect.value));
+  }
+  if (mobLangSelect) {
+    mobLangSelect.value = currentLanguageKey;
+    mobLangSelect.addEventListener('change', () => handleLanguageChange(mobLangSelect.value));
   }
 }
 
@@ -1338,8 +1347,8 @@ function speakNativeText(text, explicitLangKey = null) {
 function initAccessibility() {
   const html = document.documentElement;
 
-  // Font Size Scaling
-  const fontBtns = document.querySelectorAll('.font-scale-group .btn-ctrl');
+  // Font Size Scaling (Desktop & Mobile)
+  const fontBtns = document.querySelectorAll('.font-scale-group .btn-ctrl, .mobile-font-scale .btn-ctrl');
   const savedFontSize = localStorage.getItem('sg_font_size') || 'normal';
   setFontSize(savedFontSize);
 
@@ -1358,28 +1367,36 @@ function initAccessibility() {
     });
   }
 
-  // High Contrast
+  // High Contrast (Desktop & Mobile)
   const themeToggle = document.getElementById('theme-toggle');
+  const mobThemeToggle = document.getElementById('mobile-theme-toggle');
   const savedTheme = localStorage.getItem('sg_theme') || 'light';
   if (savedTheme === 'high-contrast') {
     html.setAttribute('data-theme', 'high-contrast');
-    themeToggle.classList.add('active');
+    if (themeToggle) themeToggle.classList.add('active');
+    if (mobThemeToggle) mobThemeToggle.classList.add('active');
   }
 
-  themeToggle.addEventListener('click', () => {
+  function toggleTheme() {
     const isDark = html.getAttribute('data-theme') === 'high-contrast';
     const newTheme = isDark ? 'light' : 'high-contrast';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('sg_theme', newTheme);
-    themeToggle.classList.toggle('active', newTheme === 'high-contrast');
+    if (themeToggle) themeToggle.classList.toggle('active', newTheme === 'high-contrast');
+    if (mobThemeToggle) mobThemeToggle.classList.toggle('active', newTheme === 'high-contrast');
     showToast(newTheme === 'high-contrast' ? 'High Contrast Mode Enabled' : 'Standard Mode Enabled', 'info');
-  });
+  }
 
-  // Voice Guidance Readout
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+  if (mobThemeToggle) mobThemeToggle.addEventListener('click', toggleTheme);
+
+  // Voice Guidance Readout (Desktop & Mobile)
   const voiceToggle = document.getElementById('voice-toggle');
+  const mobVoiceToggle = document.getElementById('mobile-voice-toggle');
   const voiceLabel = document.getElementById('voice-btn-label');
+  const mobVoiceLabel = document.getElementById('mobile-voice-btn-label');
 
-  voiceToggle.addEventListener('click', () => {
+  function handleVoiceToggle() {
     if (!('speechSynthesis' in window)) {
       showToast('Text-to-speech is not supported by your browser', 'warning');
       return;
@@ -1388,20 +1405,46 @@ function initAccessibility() {
     if (window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
       const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
-      voiceLabel.textContent = lang.voice_btn || 'Voice Help';
+      if (voiceLabel) voiceLabel.textContent = lang.voice_btn || 'Voice Help';
+      if (mobVoiceLabel) mobVoiceLabel.textContent = lang.voice_btn || 'Voice Help';
       showToast('Voice paused', 'info');
     } else {
       const activePanel = document.querySelector('.tab-panel.active');
       const textToRead = activePanel ? activePanel.innerText : 'Welcome to SilverGuard.';
       speakNativeText(textToRead.slice(0, 300));
-      voiceLabel.textContent = 'Stop Voice';
+      if (voiceLabel) voiceLabel.textContent = 'Stop Voice';
+      if (mobVoiceLabel) mobVoiceLabel.textContent = 'Stop Voice';
       showToast('Reading screen aloud...', 'info');
     }
-  });
+  }
 
-  // Emergency SOS Modal
+  if (voiceToggle) voiceToggle.addEventListener('click', handleVoiceToggle);
+  if (mobVoiceToggle) mobVoiceToggle.addEventListener('click', handleVoiceToggle);
+
+  // Mobile Accessibility Tools Drawer Toggle
+  const btnMobileToolsToggle = document.getElementById('btn-mobile-tools-toggle');
+  const mobileToolsDrawer = document.getElementById('mobile-tools-drawer');
+  const btnCloseDrawer = document.getElementById('btn-close-drawer');
+
+  if (btnMobileToolsToggle && mobileToolsDrawer) {
+    btnMobileToolsToggle.addEventListener('click', () => {
+      const isHidden = mobileToolsDrawer.classList.contains('hidden');
+      mobileToolsDrawer.classList.toggle('hidden', !isHidden);
+      btnMobileToolsToggle.setAttribute('aria-expanded', String(isHidden));
+    });
+  }
+
+  if (btnCloseDrawer && mobileToolsDrawer) {
+    btnCloseDrawer.addEventListener('click', () => {
+      mobileToolsDrawer.classList.add('hidden');
+      if (btnMobileToolsToggle) btnMobileToolsToggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Emergency SOS Modal (Desktop, Mobile Sticky Bar, and Mobile Header)
   const sosTrigger = document.getElementById('sos-trigger');
   const btnMobileSos = document.getElementById('btn-mobile-sos');
+  const btnMobileHeaderSos = document.getElementById('mobile-header-sos');
   const emergencyModal = document.getElementById('emergency-modal');
   const btnCloseSos = document.getElementById('btn-close-sos');
   const btnDismissSos = document.getElementById('btn-dismiss-sos');
@@ -1416,6 +1459,7 @@ function initAccessibility() {
 
   if (sosTrigger) sosTrigger.addEventListener('click', openSosModal);
   if (btnMobileSos) btnMobileSos.addEventListener('click', openSosModal);
+  if (btnMobileHeaderSos) btnMobileHeaderSos.addEventListener('click', openSosModal);
 
   [btnCloseSos, btnDismissSos].forEach(btn => {
     if (btn) {
@@ -1441,7 +1485,9 @@ function initAccessibility() {
    ========================================================================== */
 function initSentinelEngine() {
   const sentinelBtn = document.getElementById('sentinel-toggle-btn');
+  const mobSentinelBtn = document.getElementById('mobile-sentinel-toggle-btn');
   const sentinelText = document.getElementById('sentinel-state-text');
+  const mobSentinelText = document.getElementById('mobile-sentinel-state-text');
   const sentinelBanner = document.getElementById('sentinel-banner');
   const btnSimulateAuto = document.getElementById('btn-simulate-auto-threat');
 
@@ -1456,24 +1502,24 @@ function initSentinelEngine() {
   let sentinelActive = localStorage.getItem('sg_sentinel_active') !== 'false';
   updateSentinelUI(sentinelActive);
 
-  if (sentinelBtn) {
-    sentinelBtn.addEventListener('click', () => {
-      sentinelActive = !sentinelActive;
-      localStorage.setItem('sg_sentinel_active', String(sentinelActive));
-      updateSentinelUI(sentinelActive);
-      const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
-      showToast(sentinelActive ? `🛡️ ${lang.sentinel_btn_label} ${lang.sentinel_active_text}` : `⚠️ ${lang.sentinel_btn_label} ${lang.sentinel_paused_text}`, sentinelActive ? 'success' : 'warning');
-    });
+  function toggleSentinel() {
+    sentinelActive = !sentinelActive;
+    localStorage.setItem('sg_sentinel_active', String(sentinelActive));
+    updateSentinelUI(sentinelActive);
+    const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
+    showToast(sentinelActive ? `🛡️ ${lang.sentinel_btn_label} ${lang.sentinel_active_text}` : `⚠️ ${lang.sentinel_btn_label} ${lang.sentinel_paused_text}`, sentinelActive ? 'success' : 'warning');
   }
+
+  if (sentinelBtn) sentinelBtn.addEventListener('click', toggleSentinel);
+  if (mobSentinelBtn) mobSentinelBtn.addEventListener('click', toggleSentinel);
 
   function updateSentinelUI(active) {
     const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
-    if (sentinelBtn) {
-      sentinelBtn.classList.toggle('active', active);
-    }
-    if (sentinelText) {
-      sentinelText.textContent = active ? (lang.sentinel_active_text || 'ACTIVE') : (lang.sentinel_paused_text || 'PAUSED');
-    }
+    const textStr = active ? (lang.sentinel_active_text || 'ACTIVE') : (lang.sentinel_paused_text || 'PAUSED');
+    if (sentinelBtn) sentinelBtn.classList.toggle('active', active);
+    if (mobSentinelBtn) mobSentinelBtn.classList.toggle('active', active);
+    if (sentinelText) sentinelText.textContent = textStr;
+    if (mobSentinelText) mobSentinelText.textContent = textStr;
     if (sentinelBanner) {
       sentinelBanner.style.display = active ? 'block' : 'none';
     }
@@ -1552,28 +1598,45 @@ function initSentinelEngine() {
 function initNavigation() {
   const tabs = document.querySelectorAll('.nav-tab');
   const panels = document.querySelectorAll('.tab-panel');
+  const mobNavBtns = document.querySelectorAll('.mobile-nav-btn');
+
+  function setActiveTab(tabId) {
+    const tab = document.getElementById(tabId);
+    if (!tab) return;
+    const targetPanelId = tab.getAttribute('aria-controls');
+
+    tabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    panels.forEach(p => {
+      p.classList.remove('active');
+      p.hidden = true;
+    });
+    mobNavBtns.forEach(mb => {
+      mb.classList.toggle('active', mb.dataset.targetTab === tabId);
+    });
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    const targetPanel = document.getElementById(targetPanelId);
+    if (targetPanel) {
+      targetPanel.classList.add('active');
+      targetPanel.hidden = false;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const targetPanelId = tab.getAttribute('aria-controls');
+      setActiveTab(tab.id);
+    });
+  });
 
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      panels.forEach(p => {
-        p.classList.remove('active');
-        p.hidden = true;
-      });
-
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const targetPanel = document.getElementById(targetPanelId);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-        targetPanel.hidden = false;
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  mobNavBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTabId = btn.dataset.targetTab;
+      setActiveTab(targetTabId);
     });
   });
 }
@@ -1595,6 +1658,7 @@ const MESSAGE_PRESETS = {
 function initMessageScanner() {
   const messageInput = document.getElementById('message-input');
   const btnScan = document.getElementById('btn-scan-message');
+  const btnPaste = document.getElementById('btn-paste-message');
   const btnClear = document.getElementById('btn-clear-message');
   const emptyState = document.getElementById('message-empty-state');
   const resultContent = document.getElementById('message-result-content');
@@ -1608,6 +1672,29 @@ function initMessageScanner() {
       }
     });
   });
+
+  if (btnPaste) {
+    btnPaste.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const clipText = await navigator.clipboard.readText();
+          if (clipText.trim()) {
+            messageInput.value = clipText.trim();
+            showToast('📋 Pasted message from clipboard!', 'success');
+            analyzeMessage(messageInput.value);
+            return;
+          }
+        }
+      } catch (err) {
+        // Fallback for browsers with restricted clipboard
+      }
+      const text = prompt('Paste your SMS or message here:');
+      if (text && text.trim()) {
+        messageInput.value = text.trim();
+        analyzeMessage(messageInput.value);
+      }
+    });
+  }
 
   btnScan.addEventListener('click', () => {
     const text = messageInput.value.trim();
@@ -1629,6 +1716,14 @@ function initMessageScanner() {
     const analysis = runHeuristicScan(text);
     renderMessageResult(analysis, text);
     logActivity(`Scanned message: "${text.slice(0, 40)}..."`, analysis.riskClass, analysis.threatLevel);
+
+    // Auto-scroll to result on mobile viewports
+    const resultCard = document.getElementById('message-result-container');
+    if (resultCard && window.innerWidth <= 768) {
+      setTimeout(() => {
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
 
     if (analysis.riskClass === 'threat-danger') {
       const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
@@ -1852,6 +1947,7 @@ const LINK_PRESETS = {
 function initLinkChecker() {
   const linkInput = document.getElementById('link-input');
   const btnScan = document.getElementById('btn-scan-link');
+  const btnPaste = document.getElementById('btn-paste-link');
   const btnClear = document.getElementById('btn-clear-link');
   const emptyState = document.getElementById('link-empty-state');
   const resultContent = document.getElementById('link-result-content');
@@ -1865,6 +1961,29 @@ function initLinkChecker() {
       }
     });
   });
+
+  if (btnPaste) {
+    btnPaste.addEventListener('click', async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const clipText = await navigator.clipboard.readText();
+          if (clipText.trim()) {
+            linkInput.value = clipText.trim();
+            showToast('📋 Pasted link from clipboard!', 'success');
+            inspectLink(linkInput.value);
+            return;
+          }
+        }
+      } catch (err) {
+        // Fallback
+      }
+      const url = prompt('Paste the website link (URL) here:');
+      if (url && url.trim()) {
+        linkInput.value = url.trim();
+        inspectLink(linkInput.value);
+      }
+    });
+  }
 
   btnScan.addEventListener('click', () => {
     const url = linkInput.value.trim();
@@ -1886,6 +2005,14 @@ function initLinkChecker() {
     const analysis = analyzeUrlStructure(url);
     renderLinkResult(analysis, url);
     logActivity(`Checked Web Link: "${url.slice(0, 35)}..."`, analysis.riskClass, analysis.threatLevel);
+
+    // Auto-scroll on mobile
+    const resultCard = document.getElementById('link-result-container');
+    if (resultCard && window.innerWidth <= 768) {
+      setTimeout(() => {
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
 
     if (analysis.riskClass === 'threat-danger') {
       const lang = I18N_TRANSLATIONS[currentLanguageKey] || I18N_TRANSLATIONS.en;
@@ -2621,6 +2748,24 @@ function initPoliceLocator() {
   if (citySearch) citySearch.addEventListener('input', filterStations);
   if (stateFilter) stateFilter.addEventListener('change', filterStations);
 
+  // Quick City Filter Chips (Mobile & Desktop)
+  const cityChips = document.querySelectorAll('.city-chip');
+  cityChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cityKey = chip.dataset.cityChip;
+      cityChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+
+      if (cityKey === 'all') {
+        if (citySearch) citySearch.value = '';
+        if (stateFilter) stateFilter.value = 'all';
+      } else {
+        if (citySearch) citySearch.value = cityKey;
+      }
+      filterStations();
+    });
+  });
+
   if (btnDetectLocation) {
     btnDetectLocation.addEventListener('click', () => {
       if (!('geolocation' in navigator)) {
@@ -2697,9 +2842,11 @@ function generateSimulatedHash(str) {
 
 function updateEvidenceBadge() {
   const badge = document.getElementById('evidence-count-badge');
-  if (!badge) return;
+  const mobBadge = document.getElementById('mob-evidence-count-badge');
   const locker = getEvidenceItems();
-  badge.textContent = locker.length;
+  const countStr = String(locker.length);
+  if (badge) badge.textContent = countStr;
+  if (mobBadge) mobBadge.textContent = countStr;
 }
 
 function initEvidenceLocker() {
